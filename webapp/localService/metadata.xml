@@ -1,0 +1,51 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="cds_z_paymenttransaction" xml:lang="de" sap:schema-version="1">
+			<EntityType Name="ZC_PAYMENTTRANSACTIONType" sap:label="Consumption View Paymenttransaction" sap:content-version="1">
+				<Key><PropertyRef Name="CardType"/><PropertyRef Name="CardNumber"/><PropertyRef Name="SalesDocument"/></Key><Property Name="CardType" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:filter-restriction="interval"
+					sap:label="Kartenart" sap:quickinfo="Art der Karte"/><Property Name="CardNumber" Type="Edm.String" Nullable="false" MaxLength="25" sap:display-format="UpperCase"
+					sap:filter-restriction="interval" sap:label="Kartennummer" sap:quickinfo="Nummer der Karte"/><Property Name="SalesDocument" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase"
+					sap:filter-restriction="interval" sap:label="Vertriebsbelegnummer" sap:quickinfo="Nummer des SD-Belegs"/><Property Name="ValidToDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:filter-restriction="interval"
+					sap:label="Datum gültig bis"/><Property Name="AuthorizedAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="Currency" sap:label="Authorisierter Betrag"/><Property Name="Currency" Type="Edm.String" MaxLength="5" sap:label="Währungsschlüssel" sap:semantics="currency-code"/><Property Name="DocumentDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Belegdatum"/><Property Name="AuthorizationTime" Type="Edm.Time" Precision="0" sap:label="Uhrzeit der Autorisierung"/><Property Name="MerchantId" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Händler-ID bei der Clearing-Stelle"/><Property Name="PaymentServiceProvider" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Zahlungsdienstleister"/><Property Name="PaymentIdAuthorization" Type="Edm.String" MaxLength="40" sap:label="Zahlungs-ID Authorisierung"/><Property Name="PaymentIdRefund" Type="Edm.String" MaxLength="40" sap:label="Zahlungs-ID Refund"/><Property Name="TransactionId" Type="Edm.String" MaxLength="40" sap:label="Digitale Zahlungen"/><Property Name="AuthorizedAmountPayment" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="Currency" sap:label="Autorisierter Betrag"/><Property Name="XerCode" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Characterfeld 10"/><Property Name="XerText" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase" sap:label="Charakter 100"/></EntityType>
+			<EntityContainer Name="cds_z_paymenttransaction_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="ZC_PAYMENTTRANSACTION" EntityType="cds_z_paymenttransaction.ZC_PAYMENTTRANSACTIONType" sap:content-version="1"/></EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_z_paymenttransaction.cds_z_paymenttransaction_Entities">
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_z_paymenttransaction.cds_z_paymenttransaction_Entities/ZC_PAYMENTTRANSACTION">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="CardType"/><PropertyValue Property="AllowedExpressions" String="SingleRange"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="CardNumber"/><PropertyValue Property="AllowedExpressions" String="SingleRange"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="SalesDocument"/><PropertyValue Property="AllowedExpressions" String="SingleRange"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="ValidToDate"/><PropertyValue Property="AllowedExpressions" String="SingleRange"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/Z_PAYMENTTRANSACTION_V2/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/Z_PAYMENTTRANSACTION_V2/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
